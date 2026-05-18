@@ -52,7 +52,7 @@ export const PROJECTS = [
         category: "Modern Animated Frontend Experience",
         colSpan: "md:col-span-2",
         image: vibe,
-        anchor: "https://refokus-home.vercel.app/",
+        anchor: "https://framer-landing-page-nine.vercel.app/",
         technologies: ["Replit","React", "Tailwind CSS",],
     },
     {
