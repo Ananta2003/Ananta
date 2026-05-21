@@ -26,14 +26,6 @@ export default function Hero() {
 
                 <div className="flex flex-col">
 
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                        className="inline-flex items-center gap-2.5 self-start px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 mb-10"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 8px #34d399', animation: 'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite' }} />
-                        <span className="text-emerald-400 text-sm font-medium tracking-wide">Available for new projects</span>
-                    </motion.div>
 
                     {/* Name */}
                     <div className="overflow-hidden mb-4">
