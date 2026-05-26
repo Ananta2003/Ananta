@@ -1,31 +1,63 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Hyperspeed from "../Components/Hyperspeed/Hyperspeed";
 
 export default function Hero() {
 
+
+    const hyperspeedOptions = useMemo(() => ({
+        distortion: 'turbulentDistortion',
+        length: 400,
+        roadWidth: 10,
+        islandWidth: 2,
+        lanesPerRoad: 3,
+        fov: 90,
+        fovSpeedUp: 150,
+        speedUp: 2,
+        carLightsFade: 0.4,
+        totalSideLightSticks: 20,
+        lightPairsPerRoadWay: 40,
+        shoulderLinesWidthPercentage: 0.05,
+        brokenLinesWidthPercentage: 0.1,
+        brokenLinesLengthPercentage: 0.5,
+        lightStickWidth: [0.12, 0.5] as [number, number],
+        lightStickHeight: [1.3, 1.7] as [number, number],
+        movingAwaySpeed: [60, 80] as [number, number],
+        movingCloserSpeed: [-120, -160] as [number, number],
+        carLightsLength: [400 * 0.03, 400 * 0.2] as [number, number],
+        carLightsRadius: [0.05, 0.14] as [number, number],
+        carWidthPercentage: [0.3, 0.5] as [number, number],
+        carShiftX: [-0.8, 0.8] as [number, number],
+        carFloorSeparation: [0, 5] as [number, number],
+        colors: {
+            roadColor: 0x080808,
+            islandColor: 0x0a0a0a,
+            background: 0x000000,
+            shoulderLines: 0x131318,
+            brokenLines: 0x131318,
+            leftCars: [0x7B5CF0, 0x3B82F6, 0x06B6D4],  // violet/blue/cyan
+            rightCars: [0x06B6D4, 0x7B5CF0, 0xA78BFA],
+            sticks: 0x7B5CF0,
+        }
+    }), []);
+
     const icons = [
-        {
-            icon: FaGithub,
-            link: "https://github.com/Ananta2003",
-        },
-        {
-            icon: FaLinkedinIn,
-            link: "https://www.linkedin.com/in/ananta-vigave/",
-        },
-        {
-            icon: FaXTwitter,
-            link: "https://x.com/AnantaInsights",
-        },
+        { icon: FaGithub, link: "https://github.com/Ananta2003" },
+        { icon: FaLinkedinIn, link: "https://www.linkedin.com/in/ananta-vigave/" },
+        { icon: FaXTwitter, link: "https://x.com/AnantaInsights" },
     ];
 
     return (
-        <div className="w-full h-screen flex items-center overflow-hidden bg-gradient-to-b from-black via-violet-900 to-black p-8">
-            <div className="relative z-20 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center p-4">
+        <div className="w-full h-screen flex items-center overflow-hidden relative bg-black p-8">
+            <div className="absolute inset-0 z-0">
+                <Hyperspeed effectOptions={hyperspeedOptions} />
+            </div>
+            <div className="relative z-20 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center  p-4">
 
                 <div className="flex flex-col">
-
 
                     {/* Name */}
                     <div className="overflow-hidden mb-4">
@@ -107,89 +139,7 @@ export default function Hero() {
                     </motion.div>
                 </div>
 
-
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="hidden lg:flex items-center justify-center relative h-[500px]"
-                >
-                    {/* Pulse rings */}
-                    {[0, 1, 2].map((i) => (
-                        <div key={i} className="absolute rounded-full border border-violet-400/20"
-                            style={{
-                                width: `${340 + i * 90}px`, height: `${340 + i * 90}px`,
-                                animation: `pulse-ring ${3 + i}s ease-in-out infinite`, animationDelay: `${i * 0.6}s`
-                            }}
-                        />
-                    ))}
-
-                    {/* Orbit rings */}
-                    <div className="absolute w-[320px] h-[320px] rounded-full border border-dashed border-[#06b6d4]"
-                        style={{ animation: 'spin-slow 20s linear infinite' }}>
-                        <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cyan-400" style={{ boxShadow: '0 0 12px #06b6d4' }} />
-                    </div>
-                    <div className="absolute w-[260px] h-[260px] rounded-full border border-dashed border-[#8b5cf6]"
-                        style={{ animation: 'spin-slow-rev 15s linear infinite' }}>
-                        <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-violet-400" style={{ boxShadow: '0 0 10px #8b5cf6' }} />
-                    </div>
-
-                    {/* Core orb */}
-                    <div className="relative w-52 h-52 rounded-full flex items-center justify-center"
-                        style={{ animation: 'orb-glow 4s ease-in-out infinite' }}>
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-600 via-indigo-700 to-cyan-700 opacity-80" />
-                        <div className="absolute inset-[3px] rounded-full bg-[#070711]" />
-                        <motion.div animate={{ x: [0, 100, 0] }}>
-                            <div className="relative z-10 font-syne font-bold text-5xl text-transparent bg-clip-text bg-gradient-to-br from-violet-300 to-cyan-300">A</div>
-                        </motion.div>
-
-                    </div>
-
-                    {/* Skill chips */}
-                    {[
-                        {
-                            label: "React",
-                            color: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
-                            pos: "top-6 -right-4",
-                        },
-                        {
-                            label: "Node.js",
-                            color: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
-                            pos: "top-1/3 -right-12",
-                        },
-                        {
-                            label: "TypeScript",
-                            color: "text-violet-400 border-violet-500/30 bg-violet-500/10",
-                            pos: "bottom-12 -right-6",
-                        },
-                        {
-                            label: "Next.js",
-                            color: "text-slate-300 border-white/15 bg-white/5",
-                            pos: "top-6 -left-4",
-                        },
-                        {
-                            label: "PostgreSQL",
-                            color: "text-sky-400 border-sky-500/30 bg-sky-500/10",
-                            pos: "bottom-10 -left-8",
-                        },
-                    ].map(({ label, color, pos }) => (
-                        <motion.div
-                            key={label}
-                            whileHover={{
-                                y: -6,
-                                scale: 1.08,
-                            }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 15,
-                            }}
-                            className={`absolute px-3 py-1.5 rounded-full border text-xs font-semibold tracking-wide cursor-pointer ${color} ${pos}`}
-                            style={{ backdropFilter: "blur(8px)" }}
-                        >
-                            {label}
-                        </motion.div>
-                    ))}
-                </motion.div>
+                
             </div>
         </div>
     )
